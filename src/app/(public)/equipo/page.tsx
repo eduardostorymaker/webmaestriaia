@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Users, ArrowRight, Globe, ExternalLink, Code2 } from "lucide-react"
+import { Users, ArrowRight, Globe } from "lucide-react"
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -19,7 +20,7 @@ export default async function EquipoPage() {
   const profiles = await getProfiles().catch(() => [])
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <SectionHeader
         label="Nuestro equipo"
         title="Integrantes"
@@ -81,14 +82,14 @@ export default async function EquipoPage() {
                 <div className="flex gap-2 pt-1">
                   {profile.linkedin && (
                     <a href={profile.linkedin} target="_blank" rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
-                      <ExternalLink className="w-4 h-4" />
+                      className="text-[#0A66C2] hover:opacity-80 transition-opacity" aria-label="LinkedIn">
+                      <LinkedInIcon className="w-4 h-4" />
                     </a>
                   )}
                   {profile.github && (
                     <a href={profile.github} target="_blank" rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
-                      <Code2 className="w-4 h-4" />
+                      className="text-foreground hover:opacity-70 transition-opacity" aria-label="GitHub">
+                      <GitHubIcon className="w-4 h-4" />
                     </a>
                   )}
                   {profile.portfolio && (

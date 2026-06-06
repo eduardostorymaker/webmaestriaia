@@ -95,10 +95,10 @@ export default async function HomePage() {
         {/* Orbs de fondo */}
         <div className="orb w-[600px] h-[600px] bg-blue-600/10 -top-40 -left-40" style={{ animationDelay: "0s" }} />
         <div className="orb w-[500px] h-[500px] bg-violet/8 top-1/2 -right-20" style={{ animationDelay: "3s" }} />
-        <div className="orb w-[300px] h-[300px] bg-cyan/6 bottom-10 left-1/3" style={{ animationDelay: "5s" }} />
+        <div className="orb w-[300px] h-[300px] bg-cyan/4 bottom-10 left-1/3" style={{ animationDelay: "5s" }} />
 
         {/* Red neuronal derecha */}
-        <div className="absolute right-0 top-0 w-1/2 h-full opacity-60 pointer-events-none hidden lg:block">
+        <div className="absolute right-0 top-0 w-1/2 h-full opacity-100 pointer-events-none hidden lg:block">
           <NeuralSVG />
         </div>
 

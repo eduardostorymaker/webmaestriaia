@@ -18,6 +18,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Skeleton } from "@/components/ui/skeleton"
 import { EmptyState } from "@/components/shared/empty-state"
 import { projectSchema, type ProjectFormData } from "@/schemas/project"
+import { withProtocol } from "@/lib/utils"
 import { createClient } from "@/lib/supabase/client"
 import { PROJECT_STATUS_LABELS, PROJECT_STATUS_COLORS } from "@/types"
 import type { Project, ProjectStatus } from "@/types"
@@ -30,7 +31,7 @@ export default function AdminProyectos() {
   const [saving, setSaving] = useState(false)
   const [status, setStatus] = useState<ProjectStatus>("desarrollo")
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ProjectFormData>({
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
   })
 
@@ -46,7 +47,7 @@ export default function AdminProyectos() {
   function openCreate() {
     setEditing(null)
     setStatus("desarrollo")
-    reset({ name: "", description: "", technologies: "", project_url: "" })
+    reset({ name: "", description: "", technologies: "", status: "desarrollo", project_url: "" })
     setOpen(true)
   }
 
@@ -140,7 +141,7 @@ export default function AdminProyectos() {
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">
                       {project.project_url && (
-                        <a href={project.project_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1 text-xs">
+                        <a href={withProtocol(project.project_url)} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1 text-xs">
                           <ExternalLink className="w-3 h-3" /> Ver
                         </a>
                       )}
@@ -196,7 +197,7 @@ export default function AdminProyectos() {
             </div>
             <div className="space-y-1.5">
               <Label>Estado</Label>
-              <Select value={status} onValueChange={(v) => setStatus(v as ProjectStatus)}>
+              <Select value={status} onValueChange={(v) => { setStatus(v as ProjectStatus); setValue("status", v as ProjectStatus) }}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {(Object.entries(PROJECT_STATUS_LABELS) as [ProjectStatus, string][]).map(([val, label]) => (

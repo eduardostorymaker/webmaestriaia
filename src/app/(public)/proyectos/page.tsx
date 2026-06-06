@@ -2,11 +2,11 @@ import Image from "next/image"
 import { FolderOpen, ExternalLink } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { SectionHeader } from "@/components/shared/section-header"
 import { EmptyState } from "@/components/shared/empty-state"
 import { getProjects } from "@/services/projects"
-import { truncate } from "@/lib/utils"
+import { truncate, cn, withProtocol } from "@/lib/utils"
 import { PROJECT_STATUS_LABELS, PROJECT_STATUS_COLORS } from "@/types"
 import type { ProjectStatus } from "@/types"
 import type { Metadata } from "next"
@@ -20,7 +20,7 @@ export default async function ProyectosPage() {
   const projects = await getProjects().catch(() => [])
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <SectionHeader
         label="Portafolio"
         title="Proyectos"
@@ -94,12 +94,15 @@ export default async function ProyectosPage() {
                   )}
 
                   {project.project_url && (
-                    <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-                      <a href={project.project_url} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        Visitar Proyecto
-                      </a>
-                    </Button>
+                    <a
+                      href={withProtocol(project.project_url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full gap-2")}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Visitar Proyecto
+                    </a>
                   )}
                 </CardContent>
               </Card>

@@ -3,8 +3,9 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
   ArrowLeft, Mail, GraduationCap, Briefcase, Globe,
-  Code2, Link2, ArrowUpRight, MapPin, Sparkles,
+  ArrowUpRight, MapPin, Sparkles,
 } from "lucide-react"
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons"
 import { Button } from "@/components/ui/button"
 import { getProfileBySlug } from "@/services/profiles"
 import { getInitials } from "@/lib/utils"
@@ -178,7 +179,7 @@ export default async function ProfilePage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/25 text-xs text-blue-300 hover:bg-blue-500/15 transition-all"
                   >
-                    <Link2 className="w-3.5 h-3.5" />
+                    <LinkedInIcon className="w-3.5 h-3.5" />
                     LinkedIn
                     <ArrowUpRight className="w-3 h-3 opacity-60" />
                   </a>
@@ -191,7 +192,7 @@ export default async function ProfilePage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/12 text-xs text-muted-foreground hover:text-foreground hover:bg-white/8 transition-all"
                   >
-                    <Code2 className="w-3.5 h-3.5" />
+                    <GitHubIcon className="w-3.5 h-3.5" />
                     GitHub
                     <ArrowUpRight className="w-3 h-3 opacity-60" />
                   </a>
@@ -299,7 +300,7 @@ export default async function ProfilePage({ params }: Props) {
                   {profile.linkedin && (
                     <SocialLink
                       href={profile.linkedin}
-                      icon={<Link2 className="w-4 h-4" />}
+                      icon={<LinkedInIcon className="w-4 h-4" />}
                       label="LinkedIn"
                       sublabel="Perfil profesional"
                       color="text-blue-400 bg-blue-500/10 border-blue-500/20"
@@ -308,7 +309,7 @@ export default async function ProfilePage({ params }: Props) {
                   {profile.github && (
                     <SocialLink
                       href={profile.github}
-                      icon={<Code2 className="w-4 h-4" />}
+                      icon={<GitHubIcon className="w-4 h-4" />}
                       label="GitHub"
                       sublabel="Repositorios públicos"
                       color="text-foreground bg-white/5 border-white/10"
